@@ -14,8 +14,8 @@ echo activity: $activity
 This is complicated as you can see. Instead, `badging_parser` transform aapt output into JSON object
 directly, and you can get badging info just as get properties from an object.
 ```javascript
-var $ = require(shelljs);
-var parser = require(./badging_parser);
+var $ = require('shelljs');
+var parser = require('badging_parser');
 
 var badging = parser.parse($.exec('aapt dump badging xxx.apk').output);
 $.echo('package : ', badging.package.name);
