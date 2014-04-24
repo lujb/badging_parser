@@ -1,6 +1,6 @@
 {
   "name": "badging_parser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A parser of badging aapt dumped",
   "main": "badging_parser.js",
   "scripts": {
