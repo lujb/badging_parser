@@ -16,7 +16,7 @@ start
   }
 
 line
-  = [a-zA-Z-]+ _* nl {return null;}
+  = char+ _* nl {return null;}
   / name:[^:]+ ':' _* value:value nl* {return [name.join(''), value];}
 
 value
@@ -25,7 +25,14 @@ value
 
 one
   =  "''" {return undefined;} 
-  / "'" value:[^']+ "'" _* {return value.join('');}
+  / "'" value:element+ "'" _* { return value.join(''); }
+
+element
+  = [^']
+  / "'" &char { return "'"; }
+
+char
+  = [a-zA-Z0-9_-]
 
 str_value
   = head:one tail:(',' _* one)+ {
