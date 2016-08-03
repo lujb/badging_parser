@@ -24,7 +24,7 @@ value
   / kv_value
 
 one
-  =  "''" {return undefined;} 
+  =  "''" {return undefined;}
   / "'" value:element+ "'" _* { return value.join(''); }
 
 element
@@ -35,7 +35,7 @@ char
   = [a-zA-Z0-9_-]
 
 str_value
-  = head:one tail:(',' _* one)+ {
+  = head:one tail:(','? _* one)+ {
     var result = [head];
     for (var i=0; i< tail.length; i++) {
       result.push(tail[i][2]);
@@ -53,11 +53,10 @@ kv_value
     return result;
   }
 
-pair 
+pair
   = key:[a-zA-Z]+ "=" value:one {return [key.join(''), value];}
 
 nl
   = [\n\r]
 _
   = [ \t]
-
